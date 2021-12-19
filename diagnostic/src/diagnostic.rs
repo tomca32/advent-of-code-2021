@@ -2,7 +2,6 @@ use std::{cmp, fmt};
 use std::fs::File;
 use std::io::{BufRead, BufReader};
 
-#[derive(Clone)]
 #[derive(Debug)]
 pub struct DiagnosticLine {
     pub digits: Vec<bool>,
@@ -16,7 +15,7 @@ impl DiagnosticLine {
         })
     }
 
-    pub fn from_string(input: String) -> DiagnosticLine {
+    pub fn new(input: String) -> DiagnosticLine {
         let mut line = DiagnosticLine { digits: Vec::new() };
         for char in input.chars() {
             line.digits.push(char == '1')
@@ -37,7 +36,7 @@ pub struct DiagnosticReport {
 }
 
 impl DiagnosticReport {
-    pub fn from_input(path: &str) -> DiagnosticReport {
+    pub fn new(path: &str) -> DiagnosticReport {
         let file = File::open(path).expect("Error reading input file");
         let reader = BufReader::new(file);
 
@@ -50,7 +49,7 @@ impl DiagnosticReport {
             let line_length = line_value.len() as u32;
             diagnostic
                 .lines
-                .push(DiagnosticLine::from_string(line_value));
+                .push(DiagnosticLine::new(line_value));
             diagnostic.number_of_columns = cmp::max(diagnostic.number_of_columns, line_length)
         }
         diagnostic

@@ -1,7 +1,7 @@
 mod diagnostic;
 
 fn main() {
-    let diag = diagnostic::DiagnosticReport::from_input("input.txt");
+    let diag = diagnostic::DiagnosticReport::new("input.txt");
     println!("Gamma Rate is: {}", diag.get_gamma_rate());
     println!("Epsilon Rate is: {}", diag.get_epsilon_rate());
     println!(
